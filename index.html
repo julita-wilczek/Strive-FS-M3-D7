@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <title>Refuse. Reduce. Reuse. Repurpose. Recycle.</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">ZERO WASTE STORE</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Add</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div class="container">
+          <div class="row my-5">
+            <div class="col-3">
+                <div class="card">
+                    <img style="height:250px; object-fit: contain" src="https://img.search.brave.com/JLWoq8vzO-Jr_kw2QWQe-LENh144xairsRrcCVqSGks/rs:fit:729:225:1/g:ce/aHR0cHM6Ly90c2Uy/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC5W/SFVra3NSNHRiVWU0/SW9kOUdRbFVBSGFF/MCZwaWQ9QXBp" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Coconut brush</h5>
+                      <p class="card-text">Scrubbing brush made from coconut fiber, hand made coconut scrubber. Kitchen essential</p>
+                      <p class="card-text">Brand: Coco Republic</p>
+
+                      <a href="#" class="btn btn-light">5 USD</a>
+                    </div>
+                  </div>
+            </div>
+            <div class="col-3">
+                <div class="card">
+                    <img style="height:250px; object-fit: contain" src="https://cdn.shopify.com/s/files/1/1013/4120/products/600ml_stainless_steel_Tribe_logo_with_box_-_updated_800x.jpg?v=1627947415" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Steel water bottle</h5>
+                      <p class="card-text">Save tons of plastic from being produced by using our reusable Eco Bottle instead of cheap disposable bottles.</p>
+                        <p class="card-text">Brand: TreeTribe</p>
+                      <a href="#" class="btn btn-light">40 USD</a>
+                    </div>
+                  </div>
+            </div>
+            <div class="col-3">
+                <div class="card">
+                    <img style="height:250px; object-fit: contain" src="https://img.search.brave.com/n6LOCkKqP6AtFbLCvaljF_N44tObR4_2dKd4LOHm6x4/rs:fit:800:800:1/g:ce/aHR0cHM6Ly93d3cu/YmlvbWUuY29tLmF1/LzMwNzU5LXRoaWNr/Ym94L3plcm8td2Fz/dGUtc2hvcHBpbmct/YmFnLXNldC5qcGc" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Shopping Bag Set</h5>
+                      <p class="card-text">16 Piece Organic Cotton. Made by Biome. No more plastic bags blowing in the wind like it's some American Beauty movie.</p>
+                        <p class="card-text brand">Brand: Biome</p>          
+                      <a href="#" class="btn btn-light">10 USD</a>
+                    </div>
+                  </div>
+            </div>
+          </div>
+
+      </div>
+  
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script>
+
+        window.onload = async () => {
+            const productsData = await fetch("https://striveschool-api.herokuapp.com/api/product", 
+            { headers: { "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWZhYTQ4MDgyZWExZDAwMTViYjA1NWQiLCJpYXQiOjE2NDM4MTYwNjQsImV4cCI6MTY0NTAyNTY2NH0.NufHuuX8g0HI0LZVamJvMuYm2a82QnHqM1itLwL2MuU"}
+        })
+
+        const products = await productsData.json()
+            console.log(products)
+        }
+
+        const postProduct = () => {
+
+        }
+    </script>
+   
+  </body>
+</html>
