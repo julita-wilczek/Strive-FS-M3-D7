@@ -19,7 +19,7 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Add</a>
+                <a class="nav-link active" aria-current="page" href="/backoffice.html">Add</a>
               </li>
             </ul>
           </div>
@@ -27,40 +27,6 @@
       </nav>
       <div class="container">
           <div class="row my-5">
-            <div class="col-3">
-                <div class="card">
-                    <img style="height:250px; object-fit: contain" src="https://img.search.brave.com/JLWoq8vzO-Jr_kw2QWQe-LENh144xairsRrcCVqSGks/rs:fit:729:225:1/g:ce/aHR0cHM6Ly90c2Uy/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC5W/SFVra3NSNHRiVWU0/SW9kOUdRbFVBSGFF/MCZwaWQ9QXBp" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">Coconut brush</h5>
-                      <p class="card-text">Scrubbing brush made from coconut fiber, hand made coconut scrubber. Kitchen essential</p>
-                      <p class="card-text">Brand: Coco Republic</p>
-
-                      <a href="#" class="btn btn-light">5 USD</a>
-                    </div>
-                  </div>
-            </div>
-            <div class="col-3">
-                <div class="card">
-                    <img style="height:250px; object-fit: contain" src="https://cdn.shopify.com/s/files/1/1013/4120/products/600ml_stainless_steel_Tribe_logo_with_box_-_updated_800x.jpg?v=1627947415" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">Steel water bottle</h5>
-                      <p class="card-text">Save tons of plastic from being produced by using our reusable Eco Bottle instead of cheap disposable bottles.</p>
-                        <p class="card-text">Brand: TreeTribe</p>
-                      <a href="#" class="btn btn-light">40 USD</a>
-                    </div>
-                  </div>
-            </div>
-            <div class="col-3">
-                <div class="card">
-                    <img style="height:250px; object-fit: contain" src="https://img.search.brave.com/n6LOCkKqP6AtFbLCvaljF_N44tObR4_2dKd4LOHm6x4/rs:fit:800:800:1/g:ce/aHR0cHM6Ly93d3cu/YmlvbWUuY29tLmF1/LzMwNzU5LXRoaWNr/Ym94L3plcm8td2Fz/dGUtc2hvcHBpbmct/YmFnLXNldC5qcGc" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">Shopping Bag Set</h5>
-                      <p class="card-text">16 Piece Organic Cotton. Made by Biome. No more plastic bags blowing in the wind like it's some American Beauty movie.</p>
-                        <p class="card-text brand">Brand: Biome</p>          
-                      <a href="#" class="btn btn-light">10 USD</a>
-                    </div>
-                  </div>
-            </div>
           </div>
 
       </div>
@@ -72,9 +38,24 @@
             const productsData = await fetch("https://striveschool-api.herokuapp.com/api/product", 
             { headers: { "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWZhYTQ4MDgyZWExZDAwMTViYjA1NWQiLCJpYXQiOjE2NDM4MTYwNjQsImV4cCI6MTY0NTAyNTY2NH0.NufHuuX8g0HI0LZVamJvMuYm2a82QnHqM1itLwL2MuU"}
         })
-
         const products = await productsData.json()
-            console.log(products)
+        console.log(products)
+        const mainRow = document.querySelector(".row")
+            products.forEach(element => {
+              mainRow.innerHTML += ` <div class="col-6 col-md-3">
+                <div class="card">
+                    <img style="height:250px; object-fit: contain" src="${element.imageUrl}" class="card-img-top" alt="${element.name}-image">
+                    <div class="card-body">
+                      <h5 class="card-title">${element.name}</h5>
+                      <p class="card-text">${element.description}</p>
+                        <p class="card-text brand">Brand: ${element.brand}</p>          
+                      <a href="#" class="btn btn-light" title="Price">${element.price} USD</a>
+                      <a href="/details.html?productID=${element._id}" class="btn btn-secondary" title="Details">More info</a>
+                    </div>
+                  </div>
+            </div>`
+              
+            });
         }
 
         const postProduct = () => {
