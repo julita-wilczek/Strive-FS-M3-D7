@@ -28,7 +28,7 @@
       <img style ="object-fit: cover; height: 35vh; width: 100%" src="https://images.unsplash.com/photo-1633878353733-01fb3e3bceaf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80">
       <div class="container">
         <div class="row justify-content-center mt-2 mb-5">
-           
+    
         </div>
       </div>
   
@@ -36,9 +36,10 @@
     <script>
         const urlParams = new URLSearchParams(window.location.search)
         const productId = urlParams.get("productID")
+        const url = "https://striveschool-api.herokuapp.com/api/product/"+productId
         
         window.onload = async () => {
-            const productData = await fetch("https://striveschool-api.herokuapp.com/api/product/"+productId, 
+            const productData = await fetch(url, 
             { headers: { "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWZhYTQ4MDgyZWExZDAwMTViYjA1NWQiLCJpYXQiOjE2NDM4MTYwNjQsImV4cCI6MTY0NTAyNTY2NH0.NufHuuX8g0HI0LZVamJvMuYm2a82QnHqM1itLwL2MuU"}
         })
         const product = await productData.json()
@@ -59,14 +60,62 @@
                       <p class="card-text">Id: ${product._id}</p> 
                       <p class="card-text">Created: ${createdDate}</p> 
                       <p class="card-text">Last updated: ${product.updatedAt}</p>
-                   
+                    <div class="d-flex">
                       <a href="/backoffice.html?productID=${product._id}" class="btn btn-secondary" title="Edit">Edit</a>
+                      <button class="btn btn-danger ms-auto" data-bs-toggle="modal" 
+                data-bs-target="#deleteModal" title="Delete"><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  fill="currentColor"
+                  class="bi bi-trash"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
+                  />
+                  <path
+                    fill-rule="evenodd"
+                    d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
+                  />
+                </svg></button>
+                </div>
+                      </div>
+                  </div>
+            </div>
+            <div class="modal" id="deleteModal" tabindex="-1">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Are you sure you want to delete this product?</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-light" data-bs-dismiss="modal">Go back</button>
+                      <button type="button" class="btn btn-danger" onclick="deleteProduct()" data-bs-dismiss="modal">Delete</button>
                     </div>
                   </div>
-            </div>`
+                </div>
+              </div>`
 
         }
 
+        const deleteProduct = async () => {
+        const response = await fetch(url, {
+          method: "DELETE",
+          headers: {
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWZhYTQ4MDgyZWExZDAwMTViYjA1NWQiLCJpYXQiOjE2NDM4MTYwNjQsImV4cCI6MTY0NTAyNTY2NH0.NufHuuX8g0HI0LZVamJvMuYm2a82QnHqM1itLwL2MuU",
+          },
+        });
+        let col = document.querySelector(".col-md-4")
+        col.innerHTML = `<div class="alert alert-danger" role="alert">
+            Product deleted
+</div>`
+window.setTimeout(function(){location.href = '/index.html'},500)
+      };
     </script>
    
   </body>
