@@ -46,6 +46,8 @@
         <div class="col-md-6">
           <h2 class="mb-3 d-inline-block">PRODUCT</h2>
           <h4 class="d-inline-block">- ADD NEW</h4>
+          <div id="successAlert" class="alert alert-success d-none" role="alert">
+          </div>
           <form class="needs-validation" onsubmit="handleSubmit(event)" novalidate>
             <div class="mb-3">
               <label for="productName" class="form-label">Product name</label>
@@ -224,13 +226,23 @@
                 "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWZhYTQ4MDgyZWExZDAwMTViYjA1NWQiLCJpYXQiOjE2NDM4MTYwNjQsImV4cCI6MTY0NTAyNTY2NH0.NufHuuX8g0HI0LZVamJvMuYm2a82QnHqM1itLwL2MuU",
             },
           });
-          response.ok ? alert(alertMessage) : document.querySelector("form").className = "was-validated"
+          if (response.ok) {
+            const alert = document.querySelector("#successAlert")
+            alert.classList.remove("d-none")
+            alert.innerText = alertMessage
+            window.setTimeout(function(){location.reload(true)},3000)
+           } else{ 
+               document.querySelector("form").className = "was-validated"
+        }
         } catch (error) {
           console.log(error);
         }
       };
+        
+      const clearForm = () => {
+          document.querySelector("form").className = "needs-validation";
+      }
 
-      const clearForm = () => document.querySelector("form").className = "needs-validation"
 
       const initiateDelete = () => {
           let modal = document.querySelector(".modal")
