@@ -1,5 +1,5 @@
 # strive-shop
-Repository for Strive School Full Stack Course work, Module 2 Day 8 and 9 (February 2-3, 2022)
+Repository for Strive School Full Stack Course work, Module 3 Day 8 and 9 (February 2-3, 2022)
 
 This is project created in advanced javascript.\
 Uses AJAX (async/await), API, Boostrap.
