@@ -44,7 +44,7 @@
 
         window.onload = async () => {
             const productsData = await fetch("https://striveschool-api.herokuapp.com/api/product", 
-            { headers: { "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWZhYTQ4MDgyZWExZDAwMTViYjA1NWQiLCJpYXQiOjE2NDM4MTYwNjQsImV4cCI6MTY0NTAyNTY2NH0.NufHuuX8g0HI0LZVamJvMuYm2a82QnHqM1itLwL2MuU"}
+            { headers: { "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWZhYTQ4MDgyZWExZDAwMTViYjA1NWQiLCJpYXQiOjE2NTAyMzQ1NzEsImV4cCI6MTY1MTQ0NDE3MX0.VyExcENOWAYo2xIArnxY8vlJ8UQhluwilTaZr9pw-Kg"}
         })
         const products = await productsData.json()
         console.log(products)
